@@ -1,0 +1,63 @@
+1.	import RPi.GPIO as IO
+
+2.	import time
+
+3.	IO.setwarnings(False)
+
+4.	IO.setmode(IO.BCM)
+5.	
+6.	IO.setup(2,IO.IN) #GPIO 2 -> Left IR out
+
+7.	IO.setup(3,IO.IN) #GPIO 3 -> Right IR out
+8.	
+9.	IO.setup(4,IO.OUT) #GPIO 4 -> Motor 1 terminal A
+
+10.	IO.setup(14,IO.OUT) #GPIO 14 -> Motor 1 terminal B
+11.	
+12.	IO.setup(17,IO.OUT) #GPIO 17 -> Motor Left terminal A
+
+13.	IO.setup(18,IO.OUT) #GPIO 18 -> Motor Left terminal B
+14.	
+15.	while 1:
+16.	
+17.	 
+18.	
+19.	    if(IO.input(2)==True and IO.input(3)==True): #both while move forward     
+
+20.	        IO.output(4,True) #1A+
+
+21.	        IO.output(14,False) #1B-
+22.	
+23.	        IO.output(17,True) #2A+
+
+24.	        IO.output(18,False) #2B-
+25.	
+26.	    elif(IO.input(2)==False and IO.input(3)==True): #turn right  
+
+27.	        IO.output(4,True) #1A+
+
+28.	        IO.output(14,True) #1B-
+29.	
+30.	        IO.output(17,True) #2A+
+
+31.	        IO.output(18,False) #2B-
+32.	
+33.	    elif(IO.input(2)==True and IO.input(3)==False): #turn left
+
+34.	        IO.output(4,True) #1A+
+
+35.	        IO.output(14,False) #1B-
+36.	
+37.	        IO.output(17,True) #2A+
+
+38.	        IO.output(18,True) #2B-
+39.	
+40.	    else:  #stay still
+
+41.	        IO.output(4,True) #1A+
+
+42.	        IO.output(14,True) #1B-
+43.	
+44.	        IO.output(17,True) #2A+
+
+45.	        IO.output(18,True) #2B-
